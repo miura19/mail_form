@@ -44,7 +44,7 @@ $post = $_SESSION['form'];
                         <label for="inputContent">お問い合わせ内容</label>
                     </div>
                     <div class="col-9">
-                        <p class="display_item"><?php echo htmlspecialchars($post['contact'])?></p>
+                        <p class="display_item"><?php echo nl2br(htmlspecialchars($post['contact'])) ?></p>
                     </div>
                 </div>
             </div>
