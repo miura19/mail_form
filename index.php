@@ -16,7 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         $error['contact'] = 'blank';
     }
 }
-
+if (count($error) === 0){
+    //エラーがないので確認画面に移動
+    header('Location: confirm.php');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
