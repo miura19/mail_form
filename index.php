@@ -9,6 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
     if ($post['email'] === ''){
         $error['email'] = 'blank';
+    } else if (!filter_var($post['email'],FILTER_VALIDATE_EMAIL)){
+        $error['email'] = 'email';
     }
     if ($post['contact'] === ''){
         $error['contact'] = 'blank';
@@ -58,6 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                         <input type="email" name="email" id="inputEmail" class="form-control" value="<?php echo htmlspecialchars($post['email'])?>" required>
                         <?php if ($error['email'] === 'blank'): ?>
                         <p class="error_msg">※メールアドレスをご記入下さい</p>
+                        <?php endif; ?>
+                        <?php if ($error['email'] === 'email'): ?>
+                        <p class="error_msg">※メールアドレスを正しくご記入下さい</p>
                         <?php endif; ?>
                     </div>
                 </div>
