@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+$post = $_SESSION['form'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -17,7 +24,7 @@
                         <label for="inputName">お名前</label>
                     </div>
                     <div class="col-9">
-                        <p class="display_item">みつばち　ビー太</p>
+                        <p class="display_item"><?php echo htmlspecialchars($post['name'])?></p>
                     </div>
                 </div>
             </div>
@@ -27,7 +34,7 @@
                         <label for="inputEmail">メールアドレス</label>
                     </div>
                     <div class="col-9">
-                        <p class="display_item">bee@bee.com</p>
+                        <p class="display_item"><?php echo htmlspecialchars($post['email'])?></p>
                     </div>
                 </div>
             </div>
@@ -37,7 +44,7 @@
                         <label for="inputContent">お問い合わせ内容</label>
                     </div>
                     <div class="col-9">
-                        <p class="display_item">お問い合わせフォームの作り方について、知りたいです。</p>
+                        <p class="display_item"><?php echo htmlspecialchars($post['contact'])?></p>
                     </div>
                 </div>
             </div>
