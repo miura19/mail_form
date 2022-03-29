@@ -1,3 +1,16 @@
+<?php
+$error = [];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+    $post = filter_input_array(INPUT_POST,$_POST);
+    //フォームの送信時にエラーをチェックする
+    if ($post['name'] === ''){
+        $error['name'] = 'blank';
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -9,7 +22,7 @@
 <body>
     <!-- お問合せフォーム画面 -->
     <div class="container">
-        <form action="./confirm.html" method="POST">
+        <form action="" method="POST" novalidate>
             <p>お問い合わせ</p>
             <div class="form-group">
                 <div class="row">
@@ -20,8 +33,10 @@
                         <p class="require_item">必須</p>
                     </div>
                     <div class="col-8">
-                        <input type="text" name="name" id="inputName" class="form-control" required autofocus>
+                        <input type="text" name="name" id="inputName" class="form-control" value="<?php echo htmlspecialchars($post['name'])?>" required autofocus>
+                        <?php if ($error['name'] === 'blank'): ?>
                         <p class="error_msg">※お名前をご記入下さい</p>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
