@@ -1,7 +1,15 @@
 <?php
 session_start();
 
-$post = $_SESSION['form'];
+if (isset($_SESSION['form'])){
+    $post = $_SESSION['form'];
+} else {
+    header('Location: index.php');
+    exit();
+}
+echo('<pre>');
+print_r($_SESSION['form']);
+echo('</pre>');
 
 ?>
 
@@ -50,7 +58,7 @@ $post = $_SESSION['form'];
             </div>
             <div class="row">
                 <div class="col-9 offset-3">
-                    <a href="./contact.html">戻る</a>
+                    <a href="index.php">戻る</a>
                     <button type="submit">送信する</button>
                 </div>
             </div>

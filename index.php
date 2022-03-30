@@ -16,13 +16,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     if ($post['contact'] === ''){
         $error['contact'] = 'blank';
     }
+    if (count($error) === 0){
+        //エラーがないので確認画面に移動
+        $_SESSION['form'] = $post;
+        header('Location: confirm.php');
+        exit();
+    }
+} else if(isset($_SESSION['form'])){
+    $post = $_SESSION['form'];
 }
-if (count($error) === 0){
-    //エラーがないので確認画面に移動
-    $_SESSION['form'] = $post;
-    header('Location: confirm.php');
-    exit();
-}
+
+echo('<pre>');
+print_r($error);
+echo('</pre>');
 ?>
 
 <!DOCTYPE html>
