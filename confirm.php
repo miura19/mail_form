@@ -11,6 +11,11 @@ echo('<pre>');
 print_r($_SESSION['form']);
 echo('</pre>');
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+    unset($_SESSION['form']);
+    header('Location: thanks.html');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +29,7 @@ echo('</pre>');
 <body>
     <!-- お問合せフォーム画面 -->
     <div class="container">
-        <form action="./thanks.html" method="POST">
+        <form action="" method="POST">
             <p>お問い合わせ</p>
             <div class="form-group">
                 <div class="row">
