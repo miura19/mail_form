@@ -1,3 +1,18 @@
+<?php
+session_start();
+
+if (isset($_SESSION['form'])){
+    $post = $_SESSION['form'];
+} else {
+    header('Location: index.php');
+    exit();
+}
+echo('<pre>');
+print_r($_SESSION['form']);
+echo('</pre>');
+
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -17,7 +32,7 @@
                         <label for="inputName">お名前</label>
                     </div>
                     <div class="col-9">
-                        <p class="display_item">みつばち　ビー太</p>
+                        <p class="display_item"><?php echo htmlspecialchars($post['name'])?></p>
                     </div>
                 </div>
             </div>
@@ -27,7 +42,7 @@
                         <label for="inputEmail">メールアドレス</label>
                     </div>
                     <div class="col-9">
-                        <p class="display_item">bee@bee.com</p>
+                        <p class="display_item"><?php echo htmlspecialchars($post['email'])?></p>
                     </div>
                 </div>
             </div>
@@ -37,13 +52,13 @@
                         <label for="inputContent">お問い合わせ内容</label>
                     </div>
                     <div class="col-9">
-                        <p class="display_item">お問い合わせフォームの作り方について、知りたいです。</p>
+                        <p class="display_item"><?php echo nl2br(htmlspecialchars($post['contact'])) ?></p>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-9 offset-3">
-                    <a href="./contact.html">戻る</a>
+                    <a href="index.php">戻る</a>
                     <button type="submit">送信する</button>
                 </div>
             </div>
